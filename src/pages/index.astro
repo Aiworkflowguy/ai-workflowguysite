@@ -2,14 +2,14 @@
 // HOME — assembled from reusable sections, exactly like a Peak Mode page
 // template stacks Liquid sections. To reorder the page, reorder these lines.
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/sections/Hero.astro';
+import AnimatedHero from '../components/react/AnimatedHero.tsx';
 import HowItWorks from '../components/sections/HowItWorks.astro';
 import Proof from '../components/sections/Proof.astro';
 import AuditCta from '../components/sections/AuditCta.astro';
 import FaqAccordion from '../components/sections/FaqAccordion.astro';
 ---
 <BaseLayout>
-  <Hero />
+  <AnimatedHero client:load />
   <hr class="divider" />
   <HowItWorks />
   <Proof />

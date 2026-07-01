@@ -1,4 +1,5 @@
 ---
+import AnimatedSteps from '../react/AnimatedSteps.tsx';
 // A real ordered process, so the 01/02/03 markers encode actual sequence.
 const steps = [
   {
@@ -25,20 +26,7 @@ const steps = [
       <h2 class="h2" style="margin-top:.8rem">One system that pays for itself — then the next.</h2>
     </div>
 
-    <ol class="how__grid">
-      {steps.map((s) => (
-        <li class="how__step card card--interactive reveal">
-          <span class="how__n mono">{s.n}</span>
-          <h3 class="h3" style="margin-top:.6rem">{s.title}</h3>
-          <p class="muted" style="margin-top:.5rem">{s.body}</p>
-        </li>
-      ))}
-    </ol>
+    <!-- Steps grid is a Framer Motion island: staggered reveal on scroll + hover lift. -->
+    <AnimatedSteps steps={steps} client:visible />
   </div>
 </section>
-
-<style>
-  .how__grid { list-style: none; padding: 0; margin: 2.2rem 0 0; display: grid; gap: var(--gap); grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); counter-reset: none; }
-  .how__step { position: relative; }
-  .how__n { color: var(--lime); font-size: .95rem; letter-spacing: .1em; }
-</style>

@@ -37,7 +37,8 @@ const year = new Date().getFullYear();
   .ftr__name { font-family: var(--font-display); font-weight: 600; font-size: 1.15rem; margin-top: .6rem; }
   .ftr__demo { display: inline-flex; flex-direction: column; gap: .15rem; margin-top: 1rem; }
   .ftr__demo .demo-number { font-size: 1.1rem; }
-  .ftr__nav { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem 1.5rem; font-family: var(--font-mono); font-size: .85rem; align-content: start; }
+  .ftr__nav { display: grid; grid-template-columns: 1fr 1fr; gap: .2rem 1.5rem; font-family: var(--font-mono); font-size: .85rem; align-content: start; }
+  .ftr__nav a { display: inline-block; padding-block: .45rem; } /* larger touch target */
   .ftr__nav a:hover { color: var(--lime); }
   .ftr__legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem; margin-top: 1.5rem; font-size: .82rem; }
   @media (min-width: 760px) { .ftr__top { grid-template-columns: 1.4fr 1fr; } }

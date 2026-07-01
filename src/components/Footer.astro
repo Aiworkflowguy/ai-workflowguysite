@@ -1,12 +1,13 @@
 ---
 import { site, nav } from '../config/site';
+import Logo from './Logo.astro';
 const year = new Date().getFullYear();
 ---
 <footer class="ftr">
   <div class="container">
     <div class="ftr__top">
       <div class="ftr__brand">
-        <div class="hdr-mark" aria-hidden="true"></div>
+        <Logo class="ftr__mark" size={24} />
         <p class="ftr__name">AI Workflow Guy</p>
         <p class="faint" style="margin-top:.4rem">AI consulting for local businesses · {site.region}</p>
         <a href={site.demoPhoneHref} class="ftr__demo">
@@ -34,7 +35,6 @@ const year = new Date().getFullYear();
   .ftr { border-top: 1px solid var(--border); padding-block: clamp(2.5rem, 6vw, 4rem) 2rem; background: var(--bg); }
   .ftr__top { display: grid; gap: 2rem; grid-template-columns: 1fr; }
   .ftr__name { font-family: var(--font-display); font-weight: 600; font-size: 1.15rem; margin-top: .6rem; }
-  .hdr-mark { width: 20px; height: 20px; border-radius: 6px; background: var(--lime); box-shadow: 0 0 18px -2px var(--lime); }
   .ftr__demo { display: inline-flex; flex-direction: column; gap: .15rem; margin-top: 1rem; }
   .ftr__demo .demo-number { font-size: 1.1rem; }
   .ftr__nav { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem 1.5rem; font-family: var(--font-mono); font-size: .85rem; align-content: start; }

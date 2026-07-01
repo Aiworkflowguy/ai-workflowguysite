@@ -1,10 +1,11 @@
 ---
 import { site, nav } from '../config/site';
+import Logo from './Logo.astro';
 ---
 <header class="hdr">
   <div class="container hdr__inner">
     <a href="/" class="hdr__brand" aria-label={`${site.brand} home`}>
-      <span class="hdr__mark" aria-hidden="true"></span>
+      <Logo class="hdr__mark" size={26} />
       <span class="hdr__name">AI Workflow&nbsp;Guy</span>
     </a>
 
@@ -54,7 +55,6 @@ import { site, nav } from '../config/site';
   }
   .hdr__inner { display: flex; align-items: center; gap: clamp(0.6rem, 3vw, 1.5rem); height: 66px; }
   .hdr__brand { display: inline-flex; align-items: center; gap: 0.6rem; font-family: var(--font-display); font-weight: 600; letter-spacing: -0.01em; flex-shrink: 0; }
-  .hdr__mark { width: 18px; height: 18px; border-radius: 5px; background: var(--lime); box-shadow: 0 0 18px -2px var(--lime); }
   .hdr__nav { display: none; gap: 0.85rem; margin-inline: auto; font-family: var(--font-mono); font-size: 0.8rem; }
   .hdr__nav a { color: var(--muted); transition: color .15s ease; }
   .hdr__nav a:hover { color: var(--lime); }

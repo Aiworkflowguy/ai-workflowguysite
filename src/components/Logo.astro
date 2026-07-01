@@ -1,0 +1,31 @@
+---
+// Brand mark — hexagon outline + lightning bolt. Inherits color via currentColor,
+// so the parent sets it to var(--lime). Used in the header and footer.
+interface Props { size?: number; class?: string; }
+const { size = 24, class: className } = Astro.props;
+---
+<svg
+  class={className}
+  width={size}
+  height={size}
+  viewBox="0 0 100 100"
+  fill="none"
+  role="img"
+  aria-hidden="true"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M15 31 L46 14 L50 19 L54 14 L85 31 L85 69 L50 88 L15 69 Z"
+    stroke="currentColor"
+    stroke-width="7"
+    stroke-linejoin="round"
+    stroke-linecap="round"
+  />
+  <path d="M53 22 L24 57 L50 57 L47 80 L76 45 L50 45 Z" fill="currentColor" />
+</svg>
+
+<style>
+  /* Self-contained so the mark is always lime with a subtle glow, no matter
+     which component renders it (parent scoped styles can't reach a child root). */
+  svg { display: block; flex-shrink: 0; color: var(--lime); filter: drop-shadow(0 0 10px rgba(199, 249, 75, 0.35)); }
+</style>

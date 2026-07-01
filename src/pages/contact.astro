@@ -1,7 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ContactForm from '../components/sections/ContactForm.astro';
+import { breadcrumbSchema } from '../config/schema';
 ---
-<BaseLayout title="Book a Demo — AI Workflow Guy">
+<BaseLayout
+  title="Book a Demo — AI Workflow Guy"
+  description="Book your AI audit or ask a question. Serving local businesses across Northern Virginia — in person locally, and remotely anywhere."
+  schema={breadcrumbSchema([{ name: 'Home', path: '/' }, { name: 'Contact', path: '/contact' }])}
+>
   <ContactForm />
 </BaseLayout>

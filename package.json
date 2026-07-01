@@ -7,17 +7,22 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "images": "node scripts/generate-images.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^3.6.3",
+    "@astrojs/sitemap": "^3.2.1",
     "astro": "^4.15.0",
     "motion": "^12.42.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@google/genai": "^2.10.0",
     "@types/react": "^18.3.31",
-    "@types/react-dom": "^18.3.7"
+    "@types/react-dom": "^18.3.7",
+    "dotenv": "^17.4.2",
+    "sharp": "^0.35.3"
   }
 }

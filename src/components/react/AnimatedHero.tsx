@@ -33,10 +33,24 @@ export default function AnimatedHero() {
             you're losing — and I build it for you.
           </motion.p>
           <motion.div className="hero__actions" variants={item}>
-            <a href="/pricing" className="btn btn--primary btn--lg">Book your AI Audit · ${site.pricing.audit}</a>
-            <a href={site.demoPhoneHref} className="btn btn--ghost btn--lg">
+            <motion.a
+              href="/pricing"
+              className="btn btn--primary btn--lg"
+              whileHover={reduce ? undefined : { y: -2 }}
+              whileTap={reduce ? undefined : { scale: 0.97 }}
+              transition={{ type: "spring", stiffness: 400, damping: 24 }}
+            >
+              Book your AI Audit · ${site.pricing.audit}
+            </motion.a>
+            <motion.a
+              href={site.demoPhoneHref}
+              className="btn btn--ghost btn--lg"
+              whileHover={reduce ? undefined : { y: -2 }}
+              whileTap={reduce ? undefined : { scale: 0.97 }}
+              transition={{ type: "spring", stiffness: 400, damping: 24 }}
+            >
               <span className="hero__dot" aria-hidden="true" /> Or hear one system live: {site.demoPhone}
-            </a>
+            </motion.a>
           </motion.div>
         </motion.div>
 

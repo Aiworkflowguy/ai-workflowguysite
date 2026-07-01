@@ -3,8 +3,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import PricingLadder from '../components/sections/PricingLadder.astro';
 import FaqAccordion from '../components/sections/FaqAccordion.astro';
 import AuditCta from '../components/sections/AuditCta.astro';
+import { site } from '../config/site';
+import { faqs } from '../config/faqs';
+import { faqSchema, breadcrumbSchema } from '../config/schema';
 ---
-<BaseLayout title="Pricing — AI Workflow Guy">
+<BaseLayout
+  title="Pricing — AI Workflow Guy"
+  description={`Simple, upfront pricing: a $${site.pricing.audit} AI audit (credited toward your build), then the AI Front Office at $${site.pricing.setup} setup + $${site.pricing.monthly}/mo. No surprises.`}
+  schema={[
+    faqSchema(faqs),
+    breadcrumbSchema([{ name: 'Home', path: '/' }, { name: 'Pricing', path: '/pricing' }]),
+  ]}
+>
   <PricingLadder />
   <FaqAccordion />
   <AuditCta compact={true} />

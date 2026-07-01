@@ -37,6 +37,17 @@ export const site = {
   },
 } as const;
 
+// ---- Client results (proof) -------------------------------------------------
+//  PROOF RULE (hard): add ONLY real, verifiable, permissioned results — never
+//  invent numbers, quotes, or logos. Leaving this empty is correct and safe:
+//  the site hides the client-results blocks entirely until there's a real entry,
+//  so visitors never see unfinished "TODO" placeholders.
+export interface ClientResult {
+  result: string;       // the outcome — a metric you can stand behind, or a real quote
+  attribution: string;  // e.g. "Dental practice · Fairfax, VA" (real & permissioned)
+}
+export const clientResults: ClientResult[] = [];
+
 // ---- Navigation (drives the header + footer menus) --------------------------
 export const nav = [
   { label: 'AI Receptionist', href: '/ai-receptionist' },

@@ -1,7 +1,9 @@
 ---
 // PROOF RULE (hard): never fabricate testimonials, client logos, or stats.
 // The Peak Mode angle below is Peter's OWN business — legitimate founder proof.
-// Client testimonials/results are TODO placeholders to fill as real results land.
+// Client results render from site.clientResults and stay hidden until real ones
+// exist (see src/config/site.ts) — so the live site never shows placeholders.
+import { clientResults } from '../../config/site';
 ---
 <section class="section proof">
   <div class="container">
@@ -25,19 +27,16 @@
       <a href="/proof" class="btn btn--ghost" style="margin-top:1.2rem">See how it's built</a>
     </div>
 
-    <!-- ================================================================
-         TODO — CLIENT RESULTS. Fill these in ONLY with real, verifiable
-         results and permission. Do not invent numbers, quotes, or logos.
-         Delete this block until you have at least one real result.
-         ================================================================ -->
-    <div class="grid grid--3 reveal" style="margin-top:var(--gap)">
-      <article class="card proof__todo"><p class="faint mono">TODO · client result #1</p></article>
-      <article class="card proof__todo"><p class="faint mono">TODO · client result #2</p></article>
-      <article class="card proof__todo"><p class="faint mono">TODO · client testimonial</p></article>
-    </div>
+    {/* Client results — only shown once real, permissioned results exist. */}
+    {clientResults.length > 0 && (
+      <div class="grid grid--3 reveal" style="margin-top:var(--gap)">
+        {clientResults.map((c) => (
+          <article class="card">
+            <p style="margin-top:.2rem">{c.result}</p>
+            <p class="faint mono" style="margin-top:.9rem;font-size:.72rem">{c.attribution}</p>
+          </article>
+        ))}
+      </div>
+    )}
   </div>
 </section>
-
-<style>
-  .proof__todo { border-style: dashed; opacity: .55; text-align: center; padding-block: 2.2rem; }
-</style>

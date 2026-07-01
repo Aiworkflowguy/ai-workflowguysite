@@ -1,5 +1,5 @@
 ---
-import { site } from '../../config/site';
+import { site, clientResults } from '../../config/site';
 // ENRICHED FOUNDER PROOF for /proof.
 // PROOF RULE (hard): the Peak Mode angle is Peter's OWN business — legitimate.
 // Client testimonials/results stay TODO placeholders until real & permissioned.
@@ -57,11 +57,9 @@ const mapping = [
       ))}
     </div>
 
-    <!-- ================================================================
-         TODO — CLIENT RESULTS. Fill ONLY with real, verifiable, permissioned
-         results. Do not invent numbers, quotes, or logos. This block stays as
-         clearly-marked placeholders until at least one real result exists.
-         ================================================================ -->
+    {/* CLIENT RESULTS — the honest promise stays; results render from
+        site.clientResults only when real & permissioned ones exist. No
+        fabricated numbers, quotes, or logos, and no visible placeholders. */}
     <div class="reveal" style="margin-top:2.6rem;max-width:60ch">
       <span class="eyebrow">Client results</span>
       <h2 class="h2" style="margin-top:.7rem">Real client outcomes go here — when they’re real.</h2>
@@ -70,11 +68,16 @@ const mapping = [
         to share, they’ll appear here — verified, not invented.
       </p>
     </div>
-    <div class="grid grid--3" style="margin-top:1.4rem">
-      <article class="card pmp__todo"><p class="faint mono">TODO · client result #1</p></article>
-      <article class="card pmp__todo"><p class="faint mono">TODO · client result #2</p></article>
-      <article class="card pmp__todo"><p class="faint mono">TODO · client testimonial</p></article>
-    </div>
+    {clientResults.length > 0 && (
+      <div class="grid grid--3" style="margin-top:1.4rem">
+        {clientResults.map((c) => (
+          <article class="card">
+            <p style="margin-top:.2rem">{c.result}</p>
+            <p class="faint mono" style="margin-top:.9rem;font-size:.72rem">{c.attribution}</p>
+          </article>
+        ))}
+      </div>
+    )}
   </div>
 </section>
 
@@ -85,7 +88,6 @@ const mapping = [
   .pmp__head { background: var(--surface); border-bottom: 1px solid var(--border); }
   .pmp__row + .pmp__row, .pmp__head + .pmp__row { border-top: 1px solid var(--border); }
   .pmp__arrow { color: var(--lime); }
-  .pmp__todo { border-style: dashed; opacity: .55; text-align: center; padding-block: 2.2rem; }
   @media (min-width: 720px) {
     .pmp__head, .pmp__row { grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: center; }
     .pmp__head span:last-child { color: var(--lime); }

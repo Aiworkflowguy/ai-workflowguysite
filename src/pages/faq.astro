@@ -2,8 +2,14 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import FaqAccordion from '../components/sections/FaqAccordion.astro';
 import AuditCta from '../components/sections/AuditCta.astro';
+import { faqs } from '../config/faqs';
+import { faqSchema, breadcrumbSchema } from '../config/schema';
 ---
-<BaseLayout title="FAQ — AI Workflow Guy">
+<BaseLayout
+  title="FAQ — AI Workflow Guy"
+  description="Answers on the AI receptionist, the paid AI audit, pricing, what else we automate, and whether we work outside Northern Virginia."
+  schema={[faqSchema(faqs), breadcrumbSchema([{ name: 'Home', path: '/' }, { name: 'FAQ', path: '/faq' }])]}
+>
   <FaqAccordion />
   <AuditCta compact={true} />
 </BaseLayout>

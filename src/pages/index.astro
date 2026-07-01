@@ -7,12 +7,44 @@ import HowItWorks from '../components/sections/HowItWorks.astro';
 import Proof from '../components/sections/Proof.astro';
 import AuditCta from '../components/sections/AuditCta.astro';
 import FaqAccordion from '../components/sections/FaqAccordion.astro';
+import { faqs } from '../config/faqs';
+import { faqSchema, serviceSchema } from '../config/schema';
+import { publicImage } from '../lib/asset';
+
+// Subtle atmospheric backdrop behind the hero — appears once generated.
+const heroBg = publicImage('/images/hero-abstract.webp');
+
+const homeSchema = [
+  serviceSchema({
+    name: 'AI receptionist & business automation',
+    description:
+      'A 24/7 AI receptionist that answers every call, holds a real conversation, books appointments live, and texts back missed calls — plus wider back-office automation for local businesses.',
+    serviceType: 'AI consulting and automation',
+    url: '/',
+  }),
+  faqSchema(faqs),
+];
 ---
-<BaseLayout>
-  <AnimatedHero client:load />
+<BaseLayout schema={homeSchema}>
+  <div class="hero-wrap">
+    {heroBg && <img src={heroBg} alt="" aria-hidden="true" class="hero-bg" fetchpriority="high" />}
+    <AnimatedHero client:load />
+  </div>
   <hr class="divider" />
   <HowItWorks />
   <Proof />
   <AuditCta />
   <FaqAccordion />
 </BaseLayout>
+
+<style>
+  .hero-wrap { position: relative; isolation: isolate; }
+  .hero-wrap :global(.hero) { position: relative; z-index: 1; }
+  /* Decorative backdrop: faint, fades to the page bg so text stays crisp. */
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%;
+    object-fit: cover; opacity: 0.14; pointer-events: none;
+    -webkit-mask-image: radial-gradient(120% 90% at 70% 25%, #000 0%, transparent 72%);
+            mask-image: radial-gradient(120% 90% at 70% 25%, #000 0%, transparent 72%);
+  }
+</style>

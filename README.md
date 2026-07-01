@@ -26,6 +26,13 @@ To change pricing, the phone number, links, or the address — edit
   `/industries/<slug>` from the single template `src/pages/industries/[slug].astro`.
   Add a vertical here and its page builds itself.
 - **`src/config/integrations.ts`** — the grouped tool list rendered on `/integrations`.
+- **`src/config/faqs.ts`** — the FAQ content, read by both the visible accordion AND the FAQ
+  structured data, so they can never drift apart.
+- **`src/config/schema.ts`** — JSON-LD builders (business, website, FAQ, service,
+  breadcrumbs). All derived from `site.ts` — never hand-write schema.
+- **`src/config/site.ts` → `clientResults`** — real, permissioned client outcomes. Empty by
+  default; the proof blocks stay hidden until you add one (no fabricated proof, no visible
+  placeholders).
 
 ## Run it
 
@@ -60,15 +67,45 @@ The contact form uses **Netlify Forms** (no third-party service):
   add an email notification so submissions reach you.
 - Note: Netlify Forms only work on the deployed site, **not** on `localhost`.
 
+## SEO / structured data
+
+- **Sitemap:** `@astrojs/sitemap` builds `/sitemap-index.xml` (referenced by
+  `public/robots.txt`). Post-conversion pages (`/thank-you`, `/thank-you-intake`, `/intake`)
+  are excluded and marked `noindex`.
+- **JSON-LD:** every page carries `ProfessionalService` + `WebSite` schema (from
+  `BaseLayout`), and pages add their own — `FAQPage`, `Service`, `BreadcrumbList`, an
+  industries `ItemList` — via the `schema` prop. Test with Google's Rich Results Test.
+- **Meta:** every indexable page has a unique title + description; `BaseLayout` also takes an
+  `image` prop for per-page social/OG images.
+- Pin note: `@astrojs/sitemap` is held at **3.2.x** because 3.3+ requires Astro 5. Upgrade
+  it only when the site moves to Astro 5.
+
+## AI-generated imagery (`npm run images`)
+
+Branded imagery is generated with Google's Gemini image model ("Nano Banana"), driven by
+`scripts/generate-images.mjs`.
+
+1. Copy `.env.example` → `.env` and set `GEMINI_API_KEY` (free key:
+   https://aistudio.google.com/apikey). `.env` is gitignored.
+2. `npm run images` — generates only missing images into `public/images/`.
+   `npm run images -- --force` regenerates; `npm run images -- dental` filters by name.
+3. Wiring is automatic and safe: the industry pages and home hero show a generated image
+   **only if the file exists** (`src/lib/asset.ts`), so the build never ships a broken
+   `<img>`. Generate, then rebuild and the images appear.
+
+Prompts (dark + neon-lime brand aesthetic) live in the manifest inside the script. Google
+bills per image, separately from Claude.
+
 ## Before it's client-ready
 
 - **Confirm the pricing** in `src/config/site.ts` → `pricing` (audit / setup / monthly /
   text-back). Currently 497 / 997 / 697 / 197.
 - Set up the **Forms email notification** in Netlify (see above).
 - **Proof rule (hard):** never fabricate testimonials, client logos, or stats. The Peak
-  Mode angle is Peter's own real business. Client results in
-  `src/components/sections/PeakModeProof.astro` (and the shorter `Proof.astro` on the home
-  page) are clearly-marked TODO placeholders — fill only with real, permissioned results.
+  Mode angle is Peter's own real business. Client results are now **config-driven** — add
+  real, permissioned outcomes to `clientResults` in `src/config/site.ts` and they render on
+  the home page + `/proof`; leave it empty and those blocks stay hidden (no placeholders).
+- **(Optional) generate imagery:** set a Gemini key and run `npm run images` (see above).
 - Drop a favicon into `public/` (`favicon.svg`).
 
 ## Sections available

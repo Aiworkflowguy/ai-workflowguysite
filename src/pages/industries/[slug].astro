@@ -5,6 +5,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import AuditCta from '../../components/sections/AuditCta.astro';
 import { site } from '../../config/site';
 import { industries, type Vertical } from '../../config/industries';
+import { serviceSchema, breadcrumbSchema } from '../../config/schema';
+import { publicImage } from '../../lib/asset';
 
 export function getStaticPaths() {
   return industries.map((v) => ({ params: { slug: v.slug }, props: { v } }));
@@ -12,10 +14,26 @@ export function getStaticPaths() {
 
 interface Props { v: Vertical }
 const { v } = Astro.props;
+
+// Auto-appears once `npm run images` has generated it; null (and hidden) until then.
+const heroImg = publicImage(`/images/industry-${v.slug}.webp`);
 ---
 <BaseLayout
   title={`AI receptionist for ${v.name} | AI Workflow Guy`}
   description={`${v.headline} A 24/7 AI receptionist that answers, books, and texts back missed calls — built for ${v.name.toLowerCase()}. Hear it live: ${site.demoPhone}.`}
+  schema={[
+    serviceSchema({
+      name: `AI receptionist for ${v.name.toLowerCase()}`,
+      description: `${v.intro} ${v.outcome}`,
+      serviceType: 'AI phone answering and appointment booking',
+      url: `/industries/${v.slug}`,
+    }),
+    breadcrumbSchema([
+      { name: 'Home', path: '/' },
+      { name: 'Industries', path: '/industries' },
+      { name: v.short, path: `/industries/${v.slug}` },
+    ]),
+  ]}
 >
   <!-- Vertical hero -->
   <section class="section vhero">
@@ -41,6 +59,20 @@ const { v } = Astro.props;
       </aside>
     </div>
   </section>
+
+  {heroImg && (
+    <section class="container vbanner reveal">
+      <img
+        src={heroImg}
+        alt={`A ${v.name.toLowerCase()} setting — the kind of business the AI receptionist answers for.`}
+        width="1280"
+        height="720"
+        loading="lazy"
+        decoding="async"
+        class="vbanner__img"
+      />
+    </section>
+  )}
 
   <hr class="divider" />
 
@@ -95,4 +127,13 @@ const { v } = Astro.props;
   .vhero__demo { display: flex; flex-direction: column; align-items: flex-start; gap: .3rem; }
   .vhero__num { font-size: clamp(1.6rem, 4vw, 2.15rem); margin: 1rem 0 .4rem; }
   @media (min-width: 940px) { .vhero__grid { grid-template-columns: 1.25fr .9fr; } }
+
+  /* Generated industry banner (npm run images). Framed to match cards; the
+     inset lime border + gradient tie it into the dark theme. */
+  .vbanner { margin-block: clamp(1rem, 3vw, 1.75rem); }
+  .vbanner__img {
+    width: 100%; aspect-ratio: 16 / 9; object-fit: cover;
+    border-radius: var(--radius); border: 1px solid var(--border);
+    box-shadow: 0 0 0 1px var(--border-lime), 0 30px 80px -40px var(--lime-dim);
+  }
 </style>

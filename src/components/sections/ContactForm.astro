@@ -37,7 +37,7 @@ import { site } from '../../config/site';
       <label>Email<input type="email" name="email" required autocomplete="email" /></label>
       <label>Business<input type="text" name="business" autocomplete="organization" /></label>
       <label>What are you trying to fix?<textarea name="message" rows="4"></textarea></label>
-      <button type="submit" class="btn btn--primary btn--lg" style="width:100%">Send</button>
+      <button type="submit" class="btn btn--primary btn--lg" style="width:100%">Send message</button>
       <p class="faint mono" style="font-size:.72rem;text-align:center">I reply personally, usually same day.</p>
     </form>
   </div>
@@ -52,6 +52,7 @@ import { site } from '../../config/site';
     font-family: var(--font-body); font-size: 1rem; color: var(--text);
     background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: .75rem .85rem;
   }
+  .contact__form textarea { resize: vertical; }
   .contact__form input:focus, .contact__form textarea:focus { outline: 2px solid var(--lime); outline-offset: 1px; border-color: transparent; }
   @media (min-width: 820px) { .contact__grid { grid-template-columns: 1fr 1fr; } }
 </style>

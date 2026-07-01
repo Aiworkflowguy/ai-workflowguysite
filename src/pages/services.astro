@@ -2,8 +2,21 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ServicesTiers from '../components/sections/ServicesTiers.astro';
 import AuditCta from '../components/sections/AuditCta.astro';
+import { serviceSchema, breadcrumbSchema } from '../config/schema';
 ---
-<BaseLayout title="Services — AI Workflow Guy">
+<BaseLayout
+  title="Services — AI Workflow Guy"
+  description="From a paid AI audit to a done-for-you AI Front Office and custom automation — services scoped to the fastest payback for your local business."
+  schema={[
+    serviceSchema({
+      name: 'AI Front Office & automation services',
+      description: 'AI audit, a done-for-you AI receptionist that answers and books 24/7, and custom back-office automation for local businesses.',
+      serviceType: 'Business process automation',
+      url: '/services',
+    }),
+    breadcrumbSchema([{ name: 'Home', path: '/' }, { name: 'Services', path: '/services' }]),
+  ]}
+>
   <ServicesTiers />
   <AuditCta />
 </BaseLayout>

@@ -2,8 +2,13 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HowItWorks from '../components/sections/HowItWorks.astro';
 import AuditCta from '../components/sections/AuditCta.astro';
+import { breadcrumbSchema } from '../config/schema';
 ---
-<BaseLayout title="How It Works — AI Workflow Guy">
+<BaseLayout
+  title="How It Works — AI Workflow Guy"
+  description="Three steps: a paid AI audit that finds your fastest payback, a done-for-you build, and ongoing tuning. Advice that ends in a working system — not a slide deck."
+  schema={breadcrumbSchema([{ name: 'Home', path: '/' }, { name: 'How It Works', path: '/how-it-works' }])}
+>
   <HowItWorks />
   <AuditCta />
 </BaseLayout>

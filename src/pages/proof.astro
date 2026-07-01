@@ -5,10 +5,12 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PeakModeProof from '../components/sections/PeakModeProof.astro';
 import AuditCta from '../components/sections/AuditCta.astro';
+import { breadcrumbSchema } from '../config/schema';
 ---
 <BaseLayout
   title="Proof — an operator who runs what he builds | AI Workflow Guy"
   description="AI Workflow Guy runs a fully automated e-commerce brand, Peak Mode Supplements, on the same stack built for clients. Founder proof is real; client results are added only when verified."
+  schema={breadcrumbSchema([{ name: 'Home', path: '/' }, { name: 'Proof', path: '/proof' }])}
 >
   <PeakModeProof />
   <AuditCta />

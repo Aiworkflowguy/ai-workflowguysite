@@ -5,10 +5,24 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import AuditCta from '../components/sections/AuditCta.astro';
 import { site } from '../config/site';
 import { industries } from '../config/industries';
+import { breadcrumbSchema, abs } from '../config/schema';
+
+const industryList = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Industries served by AI Workflow Guy',
+  itemListElement: industries.map((v, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: v.name,
+    url: abs(`/industries/${v.slug}`),
+  })),
+};
 ---
 <BaseLayout
   title="Industries we serve — AI receptionist by trade | AI Workflow Guy"
   description="The AI Front Office, tuned to your trade — dental, HVAC & home services, gyms, med spas, and salons. A missed call is a lost patient, job, or member. We catch it."
+  schema={[industryList, breadcrumbSchema([{ name: 'Home', path: '/' }, { name: 'Industries', path: '/industries' }])]}
 >
   <section class="section">
     <div class="container">

@@ -6,10 +6,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import AuditCta from '../components/sections/AuditCta.astro';
 import { site } from '../config/site';
 import { integrationGroups } from '../config/integrations';
+import { breadcrumbSchema } from '../config/schema';
 ---
 <BaseLayout
   title="Integrations — works with the tools you already use | AI Workflow Guy"
   description="The AI Front Office books into your existing calendar, answers your existing phone number, and hands off to your CRM. We confirm your exact stack on the audit call."
+  schema={breadcrumbSchema([{ name: 'Home', path: '/' }, { name: 'Integrations', path: '/integrations' }])}
 >
   <section class="section">
     <div class="container">

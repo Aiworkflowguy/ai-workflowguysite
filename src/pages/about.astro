@@ -5,10 +5,12 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import AuditCta from '../components/sections/AuditCta.astro';
 import { site } from '../config/site';
+import { breadcrumbSchema } from '../config/schema';
 ---
 <BaseLayout
   title="About — the operator who builds what he runs | AI Workflow Guy"
   description="AI Workflow Guy is a Northern Virginia AI consultant who runs a fully automated e-commerce business, Peak Mode Supplements, on the same systems he builds for local businesses."
+  schema={breadcrumbSchema([{ name: 'Home', path: '/' }, { name: 'About', path: '/about' }])}
 >
   <section class="section">
     <div class="container about__grid">

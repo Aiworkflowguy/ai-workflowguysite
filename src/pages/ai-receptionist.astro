@@ -8,10 +8,22 @@ import ReceptionistCapabilities from '../components/sections/ReceptionistCapabil
 import CallerExperience from '../components/sections/CallerExperience.astro';
 import FaqAccordion from '../components/sections/FaqAccordion.astro';
 import AuditCta from '../components/sections/AuditCta.astro';
+import { faqs } from '../config/faqs';
+import { serviceSchema, faqSchema, breadcrumbSchema } from '../config/schema';
 ---
 <BaseLayout
   title="AI Receptionist — answers 24/7 & books on the call | AI Workflow Guy"
   description="A 24/7 AI receptionist that answers every call, books appointments live during the call, and texts back missed calls. Hear it live: 571-686-7669."
+  schema={[
+    serviceSchema({
+      name: 'AI receptionist',
+      description: 'A 24/7 AI receptionist that answers every call, holds a real conversation, books appointments live during the call, and texts back missed calls.',
+      serviceType: 'AI phone answering and appointment booking',
+      url: '/ai-receptionist',
+    }),
+    faqSchema(faqs),
+    breadcrumbSchema([{ name: 'Home', path: '/' }, { name: 'AI Receptionist', path: '/ai-receptionist' }]),
+  ]}
 >
   <Hero
     eyebrow="The flagship · AI Front Office"

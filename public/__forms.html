@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Netlify form detection</title>
+    <meta name="robots" content="noindex" />
+  </head>
+  <body>
+    <!--
+      This file exists ONLY so Netlify's build-time scanner registers both forms
+      and every field. Astro can hide forms from the detector, so these plain,
+      unstyled copies guarantee detection. Keep each form's `name` and the full
+      set of field `name` attributes identical to the real forms:
+        - contact  -> src/components/sections/ContactForm.astro
+        - intake   -> src/components/sections/IntakeForm.astro
+      Only fields present here get captured in submissions.
+    -->
+
+    <!-- CONTACT (src/components/sections/ContactForm.astro) -->
+    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="contact" />
+      <input name="bot-field" />
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="text" name="business" />
+      <textarea name="message"></textarea>
+    </form>
+
+    <!-- INTAKE (src/components/sections/IntakeForm.astro) -->
+    <form name="intake" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="intake" />
+      <input name="bot-field" />
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="text" name="business" />
+      <input type="tel" name="phone" />
+      <textarea name="biggest_frustration"></textarea>
+      <textarea name="wish_automated"></textarea>
+    </form>
+  </body>
+</html>

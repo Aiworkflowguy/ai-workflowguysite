@@ -1,0 +1,29 @@
+---
+// Confirmation for the INTAKE form (action="/thank-you-intake"). Warm, low-pressure.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../config/site';
+---
+<BaseLayout title="Thanks — AI Workflow Guy" description="Got it — thank you.">
+  <section class="section thanks">
+    <div class="container thanks__inner">
+      <span class="eyebrow" style="justify-content:center">Got it — thank you</span>
+      <h1 class="h1" style="margin-top:1rem">Thanks — this is exactly what I needed.</h1>
+      <p class="lead" style="margin:1.1rem auto 0">
+        I'll go through your answers before we talk, so I show up already knowing where the time
+        and money are leaking in your business. That means our conversation is about solutions —
+        not me picking your brain live. I'll follow up to confirm our time.
+      </p>
+      <p class="thanks__aside faint" style="margin:1.6rem auto 0">
+        Curious what I actually build? Here's one example you can try right now — call
+        <a href={site.demoPhoneHref} class="demo-number">{site.demoPhone}</a> and talk to a system I made.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .thanks { min-height: 60vh; display: grid; place-items: center; text-align: center; }
+  .thanks__inner { max-width: 58ch; }
+  .thanks__aside { font-size: .92rem; }
+  .thanks__aside .demo-number { font-size: .95rem; }
+</style>

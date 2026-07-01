@@ -1,0 +1,57 @@
+---
+import { site } from '../../config/site';
+---
+<section class="section contact">
+  <div class="container contact__grid">
+    <div class="reveal">
+      <span class="eyebrow">Book a demo</span>
+      <h2 class="h2" style="margin-top:.8rem">Two ways to start.</h2>
+      <p class="lead" style="margin-top:.9rem">Hear the system live, or send a note and I'll get back to you.</p>
+
+      <a href={site.demoPhoneHref} class="contact__demo card card--accent">
+        <span class="badge">Fastest</span>
+        <p class="h3" style="margin-top:.8rem">Call the AI receptionist</p>
+        <span class="demo-number" style="font-size:1.8rem;margin-top:.4rem;display:block">{site.demoPhone}</span>
+        <span class="faint mono" style="font-size:.72rem">30 seconds · no signup</span>
+      </a>
+
+      <a href={site.calendly} class="btn btn--ghost" style="margin-top:1rem">Book an audit call →</a>
+    </div>
+
+    <!-- Netlify Forms: detected automatically at deploy from the static HTML.
+         `data-netlify` enables it, the hidden form-name field ties submissions to
+         the form, the honeypot blocks bots, and action redirects to /thank-you. -->
+    <form
+      class="contact__form card reveal"
+      name={site.netlifyFormName}
+      method="POST"
+      action="/thank-you"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+    >
+      <input type="hidden" name="form-name" value={site.netlifyFormName} />
+      <p class="contact__hp" hidden>
+        <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+      </p>
+      <label>Name<input type="text" name="name" required autocomplete="name" /></label>
+      <label>Email<input type="email" name="email" required autocomplete="email" /></label>
+      <label>Business<input type="text" name="business" autocomplete="organization" /></label>
+      <label>What are you trying to fix?<textarea name="message" rows="4"></textarea></label>
+      <button type="submit" class="btn btn--primary btn--lg" style="width:100%">Send</button>
+      <p class="faint mono" style="font-size:.72rem;text-align:center">I reply personally, usually same day.</p>
+    </form>
+  </div>
+</section>
+
+<style>
+  .contact__grid { display: grid; gap: 2rem; grid-template-columns: 1fr; }
+  .contact__demo { display: block; margin-top: 1.4rem; }
+  .contact__form { display: grid; gap: .9rem; }
+  .contact__form label { display: grid; gap: .35rem; font-family: var(--font-mono); font-size: .78rem; letter-spacing: .04em; color: var(--muted); }
+  .contact__form input, .contact__form textarea {
+    font-family: var(--font-body); font-size: 1rem; color: var(--text);
+    background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: .75rem .85rem;
+  }
+  .contact__form input:focus, .contact__form textarea:focus { outline: 2px solid var(--lime); outline-offset: 1px; border-color: transparent; }
+  @media (min-width: 820px) { .contact__grid { grid-template-columns: 1fr 1fr; } }
+</style>

@@ -1,0 +1,8 @@
+# Netlify picks this up automatically. Connect the repo in Netlify once and
+# every git push rebuilds and redeploys — same domain, still $0 on the free tier.
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"

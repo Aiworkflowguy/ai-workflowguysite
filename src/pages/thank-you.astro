@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../config/site';
+---
+<BaseLayout title="Thanks — AI Workflow Guy" description="Thanks for reaching out.">
+  <section class="section" style="min-height:52vh;display:grid;place-items:center;text-align:center">
+    <div class="container" style="max-width:52ch">
+      <span class="eyebrow" style="justify-content:center">Got it</span>
+      <h1 class="h1" style="margin-top:1rem">Thanks — I'll be in touch.</h1>
+      <p class="lead" style="margin:1rem auto 0">Usually same day. In the meantime, hear the receptionist live:</p>
+      <a href={site.demoPhoneHref} class="demo-number" style="font-size:1.8rem;display:inline-block;margin-top:1rem">{site.demoPhone}</a>
+    </div>
+  </section>
+</BaseLayout>

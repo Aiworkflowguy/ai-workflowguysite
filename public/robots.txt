@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://aiworkflowguy.com/sitemap-index.xml

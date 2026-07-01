@@ -1,0 +1,54 @@
+---
+import { site } from '../../config/site';
+const p = site.pricing;
+---
+<section class="section pricing">
+  <div class="container">
+    <div class="reveal center" style="max-width:60ch;margin-inline:auto">
+      <span class="eyebrow" style="justify-content:center">Pricing</span>
+      <h2 class="h2" style="margin-top:.8rem">Start small, prove it, scale.</h2>
+      <p class="lead" style="margin-top:.8rem;margin-inline:auto">
+        No $5k check up front. You start with a low-cost audit, and that fee credits toward the build.
+      </p>
+    </div>
+
+    <div class="pricing__grid">
+      <!-- Step 1 -->
+      <article class="card card--interactive reveal">
+        <span class="tier-label">Step 1 · Entry</span>
+        <h3 class="h3" style="margin-top:.5rem">AI Audit</h3>
+        <p class="price" style="font-size:2.2rem;margin-top:.4rem">${p.audit}<span class="faint mono" style="font-size:.85rem;font-weight:400"> one-time</span></p>
+        <p class="muted" style="margin-top:.7rem">Findings + recommendations doc on where automation pays back fastest. Fee credits toward your build.</p>
+        <a href={site.calendly} class="btn btn--ghost" style="margin-top:1.2rem;width:100%">Book the audit</a>
+      </article>
+
+      <!-- Step 2 (flagship) -->
+      <article class="card card--accent reveal">
+        <span class="badge">Most popular</span>
+        <h3 class="h3" style="margin-top:.7rem">AI Front Office</h3>
+        <p class="price" style="font-size:2.2rem;margin-top:.4rem">${p.setup}<span class="faint mono" style="font-size:.85rem;font-weight:400"> setup</span></p>
+        <p class="demo-number" style="font-size:1.15rem;margin-top:.2rem">+ ${p.monthly}/mo</p>
+        <p class="muted" style="margin-top:.7rem">24/7 AI receptionist: answers every call, books live during the call, texts back missed calls. On a 6- or 12-month agreement. Audit fee credited.</p>
+        <a href={site.calendly} class="btn btn--primary" style="margin-top:1.2rem;width:100%">Get started</a>
+      </article>
+
+      <!-- Optional wedge -->
+      {p.textback.enabled && (
+        <article class="card card--interactive reveal">
+          <span class="tier-label">Entry wedge</span>
+          <h3 class="h3" style="margin-top:.5rem">Missed-Call Text-Back</h3>
+          <p class="price" style="font-size:2.2rem;margin-top:.4rem">${p.textback.setup}<span class="faint mono" style="font-size:.85rem;font-weight:400"> setup</span></p>
+          <p class="demo-number" style="font-size:1.15rem;margin-top:.2rem">${p.textback.monthly}/mo</p>
+          <p class="muted" style="margin-top:.7rem">Every missed call gets an instant text back so the lead never goes cold. The easiest first yes — upgrades into the full front office.</p>
+          <a href={site.calendly} class="btn btn--ghost" style="margin-top:1.2rem;width:100%">Start here</a>
+        </article>
+      )}
+    </div>
+
+    <p class="faint center mono" style="margin-top:1.4rem;font-size:.78rem">Larger or custom builds are quoted after the audit.</p>
+  </div>
+</section>
+
+<style>
+  .pricing__grid { display: grid; gap: var(--gap); grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin-top: 2.4rem; align-items: start; }
+</style>

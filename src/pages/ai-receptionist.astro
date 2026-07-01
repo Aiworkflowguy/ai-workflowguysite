@@ -1,0 +1,26 @@
+---
+// AI RECEPTIONIST — deep-dive on the flagship. Assembled from the section
+// library: Hero (with page-specific props) → capabilities → caller experience
+// → how it fits the ladder → FAQ → audit CTA.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/sections/Hero.astro';
+import ReceptionistCapabilities from '../components/sections/ReceptionistCapabilities.astro';
+import CallerExperience from '../components/sections/CallerExperience.astro';
+import FaqAccordion from '../components/sections/FaqAccordion.astro';
+import AuditCta from '../components/sections/AuditCta.astro';
+---
+<BaseLayout
+  title="AI Receptionist — answers 24/7 & books on the call | AI Workflow Guy"
+  description="A 24/7 AI receptionist that answers every call, books appointments live during the call, and texts back missed calls. Hear it live: 571-686-7669."
+>
+  <Hero
+    eyebrow="The flagship · AI Front Office"
+    title="An AI receptionist that answers every call and books the appointment — 24/7."
+    sub="It picks up on the first ring, holds a real conversation, books the appointment while the caller is still on the line, and texts back anything it can’t take. The calls you’re missing right now are the ones it captures."
+  />
+  <hr class="divider" />
+  <ReceptionistCapabilities />
+  <CallerExperience />
+  <FaqAccordion />
+  <AuditCta />
+</BaseLayout>

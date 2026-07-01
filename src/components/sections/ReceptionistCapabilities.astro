@@ -1,0 +1,58 @@
+---
+import { site } from '../../config/site';
+// The flagship, broken into the three things it actually does. No new tokens —
+// reuses .card / .eyebrow / .grid from the design system.
+const caps = [
+  {
+    n: '01',
+    title: 'Answers every call, 24/7',
+    body: 'It picks up on the first ring — during a job, after hours, on holidays, at 2am. No voicemail, no hold music, no "we’re closed." Every caller reaches a real conversation.',
+  },
+  {
+    n: '02',
+    title: 'Books the appointment on the call',
+    body: 'It doesn’t take a message for you to chase later. It checks your calendar and puts the appointment on the books while the caller is still on the line.',
+  },
+  {
+    n: '03',
+    title: 'Texts back missed calls automatically',
+    body: 'If a call ever slips through, the caller gets an instant text so the lead never goes cold — the same wedge that turns a missed call into a booking.',
+  },
+];
+---
+<section class="section rcap">
+  <div class="container">
+    <div class="reveal" style="max-width:60ch">
+      <span class="eyebrow">What it does</span>
+      <h2 class="h2" style="margin-top:.8rem">Three jobs, done every time — not just when someone’s free to answer.</h2>
+      <p class="lead" style="margin-top:.9rem">
+        The AI Front Office receptionist is one system with one purpose: never let a call turn into lost revenue.
+      </p>
+    </div>
+
+    <div class="grid grid--3" style="margin-top:2.2rem">
+      {caps.map((c) => (
+        <article class="card card--interactive reveal">
+          <span class="mono" style="color:var(--lime);font-size:.95rem;letter-spacing:.1em">{c.n}</span>
+          <h3 class="h3" style="margin-top:.6rem">{c.title}</h3>
+          <p class="muted" style="margin-top:.5rem">{c.body}</p>
+        </article>
+      ))}
+    </div>
+
+    <div class="rcap__try reveal card card--accent">
+      <div>
+        <span class="badge">Don’t take my word for it</span>
+        <p class="h3" style="margin-top:.8rem">Call it right now and have a conversation.</p>
+        <p class="muted" style="margin-top:.5rem;max-width:52ch">This is the exact system I build for your business — answering, talking, and booking live.</p>
+      </div>
+      <a href={site.demoPhoneHref} class="rcap__num demo-number">{site.demoPhone}</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .rcap__try { display: grid; gap: 1.4rem; align-items: center; margin-top: var(--gap); }
+  .rcap__num { font-size: clamp(1.5rem, 4vw, 2.1rem); justify-self: start; }
+  @media (min-width: 820px) { .rcap__try { grid-template-columns: 1fr auto; } .rcap__num { justify-self: end; } }
+</style>

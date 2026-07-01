@@ -1,0 +1,93 @@
+---
+import { site } from '../../config/site';
+// ENRICHED FOUNDER PROOF for /proof.
+// PROOF RULE (hard): the Peak Mode angle is Peter's OWN business — legitimate.
+// Client testimonials/results stay TODO placeholders until real & permissioned.
+// Never invent numbers, quotes, or logos.
+
+// Maps what runs in Peter's own business → what a client gets. Each row is a
+// real capability, described without fabricated metrics.
+const mapping = [
+  { mine: 'Customer support triaged and answered by AI', yours: 'A receptionist that handles routine questions without your team' },
+  { mine: 'Orders and fulfillment run as automated workflows', yours: 'Bookings captured and logged the moment a call comes in' },
+  { mine: 'Marketing and follow-up sequences on autopilot', yours: 'Missed-call text-backs and lead follow-up that never forget' },
+  { mine: 'Reporting assembled automatically, not by hand', yours: 'Visibility into what your front office is capturing' },
+];
+---
+<section class="section pmp">
+  <div class="container">
+    <div class="reveal" style="max-width:64ch">
+      <span class="eyebrow">Proof</span>
+      <h1 class="h1" style="margin-top:1rem">I don’t just advise on automation. I run a business on it.</h1>
+      <p class="lead" style="margin-top:1.2rem">
+        I built and automated an entire e-commerce brand — Peak Mode Supplements — on the same stack I build
+        for clients. The person designing your systems already operates one at scale, every day.
+      </p>
+    </div>
+
+    <div class="card card--accent reveal" style="margin-top:2rem">
+      <span class="badge">Founder-built</span>
+      <p class="h3" style="margin-top:.8rem">A full brand, run by AI workflows I built myself.</p>
+      <p class="muted" style="margin-top:.6rem;max-width:64ch">
+        Support, fulfillment, marketing, and reporting all run as AI-driven workflows I designed and maintain.
+        That’s not a case study I read — it’s a business I’m accountable for. On your audit call I’ll walk you
+        through it live so you can see the real thing, not screenshots.
+      </p>
+      <a href={site.demoPhoneHref} class="pmp__demo">
+        <span class="faint mono" style="font-size:.7rem;letter-spacing:.12em;text-transform:uppercase">And the receptionist I’d build you — call it now</span>
+        <span class="demo-number" style="font-size:1.5rem">{site.demoPhone}</span>
+      </a>
+    </div>
+
+    <!-- Mapping: my business → yours -->
+    <div class="reveal" style="margin-top:2.6rem;max-width:60ch">
+      <span class="eyebrow">What that means for you</span>
+      <h2 class="h2" style="margin-top:.7rem">The same playbook, pointed at your front office.</h2>
+    </div>
+    <div class="pmp__map reveal">
+      <div class="pmp__head">
+        <span class="tier-label">In my business</span>
+        <span class="tier-label">What you get</span>
+      </div>
+      {mapping.map((row) => (
+        <div class="pmp__row">
+          <p class="muted">{row.mine}</p>
+          <p><span class="pmp__arrow mono" aria-hidden="true">→</span> {row.yours}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- ================================================================
+         TODO — CLIENT RESULTS. Fill ONLY with real, verifiable, permissioned
+         results. Do not invent numbers, quotes, or logos. This block stays as
+         clearly-marked placeholders until at least one real result exists.
+         ================================================================ -->
+    <div class="reveal" style="margin-top:2.6rem;max-width:60ch">
+      <span class="eyebrow">Client results</span>
+      <h2 class="h2" style="margin-top:.7rem">Real client outcomes go here — when they’re real.</h2>
+      <p class="muted" style="margin-top:.7rem">
+        I won’t post testimonials or numbers I can’t stand behind. As client results come in with permission
+        to share, they’ll appear here — verified, not invented.
+      </p>
+    </div>
+    <div class="grid grid--3" style="margin-top:1.4rem">
+      <article class="card pmp__todo"><p class="faint mono">TODO · client result #1</p></article>
+      <article class="card pmp__todo"><p class="faint mono">TODO · client result #2</p></article>
+      <article class="card pmp__todo"><p class="faint mono">TODO · client testimonial</p></article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pmp__demo { display: inline-flex; flex-direction: column; gap: .2rem; margin-top: 1.3rem; }
+  .pmp__map { margin-top: 1.4rem; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .pmp__head, .pmp__row { display: grid; grid-template-columns: 1fr; gap: .3rem; padding: 1rem 1.2rem; }
+  .pmp__head { background: var(--surface); border-bottom: 1px solid var(--border); }
+  .pmp__row + .pmp__row, .pmp__head + .pmp__row { border-top: 1px solid var(--border); }
+  .pmp__arrow { color: var(--lime); }
+  .pmp__todo { border-style: dashed; opacity: .55; text-align: center; padding-block: 2.2rem; }
+  @media (min-width: 720px) {
+    .pmp__head, .pmp__row { grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: center; }
+    .pmp__head span:last-child { color: var(--lime); }
+  }
+</style>

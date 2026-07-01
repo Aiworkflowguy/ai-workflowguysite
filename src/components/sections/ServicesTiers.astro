@@ -1,0 +1,58 @@
+---
+import { site } from '../../config/site';
+const expansion = [
+  { title: 'AI-Powered Websites', body: 'A site with the receptionist, booking, and lead-capture built in — not a brochure. Your front office with a front end.' },
+  { title: 'Custom Workflow Automation', body: 'The repetitive back-office work — intake, follow-up, data entry, reporting — turned into systems that run without you.' },
+  { title: 'Internal Ops Systems', body: 'Lead routing, CRM updates, and team handoffs wired together so nothing falls through the cracks.' },
+];
+---
+<section class="section svc">
+  <div class="container">
+    <div class="reveal" style="max-width:64ch">
+      <span class="eyebrow">Services</span>
+      <h2 class="h2" style="margin-top:.8rem">Most businesses don't need "AI." They need one system that pays for itself — then another.</h2>
+      <p class="lead" style="margin-top:.9rem">Here's how we build that, in order.</p>
+    </div>
+
+    <!-- Tier 1: entry -->
+    <div class="svc__tier1 card card--accent reveal">
+      <div>
+        <span class="tier-label">Tier 1 · Where every engagement starts</span>
+        <h3 class="h3" style="margin-top:.5rem">AI Audit — ${site.pricing.audit}</h3>
+        <p class="muted" style="margin-top:.6rem;max-width:52ch">I assess your operations and hand you a ranked plan. Everything below is what the audit points you toward.</p>
+      </div>
+      <a href={site.calendly} class="btn btn--primary">Book the audit</a>
+    </div>
+
+    <!-- Tier 2: flagship -->
+    <div class="svc__tier2 card card--interactive reveal">
+      <span class="tier-label">Tier 2 · The flagship</span>
+      <h3 class="h3" style="margin-top:.5rem">AI Front Office</h3>
+      <p class="muted" style="margin-top:.6rem;max-width:60ch">A 24/7 AI receptionist that answers every call, books appointments live during the call, and texts back missed calls. Missed calls are lost revenue — this captures them.</p>
+      <a href={site.demoPhoneHref} class="svc__demo">
+        <span class="faint mono" style="font-size:.7rem;letter-spacing:.12em;text-transform:uppercase">Hear it live</span>
+        <span class="demo-number" style="font-size:1.2rem">{site.demoPhone}</span>
+      </a>
+    </div>
+
+    <!-- Tier 3: expansion -->
+    <div class="reveal">
+      <p class="tier-label" style="margin-top:2.2rem">Tier 3 · Once the front office is working, we automate the rest</p>
+      <div class="grid grid--3" style="margin-top:1rem">
+        {expansion.map((e) => (
+          <article class="card card--interactive">
+            <h3 class="h3" style="font-size:1.15rem">{e.title}</h3>
+            <p class="muted" style="margin-top:.5rem">{e.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .svc__tier1 { display: grid; gap: 1.2rem; align-items: center; margin-top: 2.3rem; }
+  .svc__tier2 { margin-top: var(--gap); }
+  .svc__demo { display: inline-flex; flex-direction: column; gap: .1rem; margin-top: 1rem; }
+  @media (min-width: 780px) { .svc__tier1 { grid-template-columns: 1fr auto; } }
+</style>

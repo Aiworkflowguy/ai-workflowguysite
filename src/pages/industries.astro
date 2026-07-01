@@ -1,0 +1,47 @@
+---
+// INDUSTRIES HUB — lists every vertical from the config. Each card links to a
+// per-vertical page generated from the same array (see industries/[slug].astro).
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AuditCta from '../components/sections/AuditCta.astro';
+import { site } from '../config/site';
+import { industries } from '../config/industries';
+---
+<BaseLayout
+  title="Industries we serve — AI receptionist by trade | AI Workflow Guy"
+  description="The AI Front Office, tuned to your trade — dental, HVAC & home services, gyms, med spas, and salons. A missed call is a lost patient, job, or member. We catch it."
+>
+  <section class="section">
+    <div class="container">
+      <div class="reveal" style="max-width:64ch">
+        <span class="eyebrow">Industries</span>
+        <h1 class="h1" style="margin-top:1rem">The same problem, in every local business: the phone gets missed.</h1>
+        <p class="lead" style="margin-top:1.2rem">
+          A missed call means something different in each trade — a lost patient, an empty chair, a job that
+          went to the competitor who picked up. The AI Front Office is tuned to yours. Pick your industry:
+        </p>
+      </div>
+
+      <div class="grid grid--3" style="margin-top:2.4rem">
+        {industries.map((v) => (
+          <a href={`/industries/${v.slug}`} class="card card--interactive reveal ind__card">
+            <span class="tier-label">{v.short}</span>
+            <h2 class="h3" style="margin-top:.5rem">{v.name}</h2>
+            <p class="muted" style="margin-top:.5rem">A missed call is {v.lostUnit} lost. Here’s how we stop that →</p>
+          </a>
+        ))}
+      </div>
+
+      <p class="faint mono center" style="margin-top:2rem;font-size:.8rem">
+        Not listed? The system works for any appointment-driven local business — call it live at
+        <a href={site.demoPhoneHref} class="demo-number">{site.demoPhone}</a> or book an audit.
+      </p>
+    </div>
+  </section>
+  <AuditCta />
+</BaseLayout>
+
+<style>
+  .ind__card { display: block; }
+  .ind__card h2 { color: var(--text); transition: color .15s ease; }
+  .ind__card:hover h2 { color: var(--lime); }
+</style>

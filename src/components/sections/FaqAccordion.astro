@@ -1,0 +1,38 @@
+---
+import { site } from '../../config/site';
+const faqs = [
+  { q: 'What does the AI receptionist actually do?', a: `It answers your phone 24/7, holds a natural conversation, books appointments during the call, and texts back any call it can't take. Call ${site.demoPhone} and try it yourself.` },
+  { q: 'Why start with a paid audit instead of just building?', a: `The audit makes sure you spend money on the automation with the fastest payback, not a guess. It's low-commitment, and the fee credits toward your build — so it's effectively risk-free once you move forward.` },
+  { q: 'How much does it cost?', a: `The audit is $${site.pricing.audit}. The AI Front Office is $${site.pricing.setup} setup + $${site.pricing.monthly}/mo on a 6- or 12-month agreement, with the audit fee credited. Larger or custom builds are quoted after the audit.` },
+  { q: 'Do you only do phone systems?', a: `That's the front door because it has the clearest ROI. Once it's working, I automate the rest of your operations — websites with booking built in, back-office workflows, lead follow-up, and more.` },
+  { q: 'Do you work with businesses outside Northern Virginia?', a: `The systems run remotely, so yes. Local NoVA businesses get the option of in-person setup.` },
+];
+---
+<section class="section faq">
+  <div class="container faq__wrap">
+    <div class="reveal">
+      <span class="eyebrow">FAQ</span>
+      <h2 class="h2" style="margin-top:.8rem">Questions, answered plainly.</h2>
+    </div>
+    <div class="faq__list reveal">
+      {faqs.map((f) => (
+        <details class="faq__item">
+          <summary>{f.q}</summary>
+          <p class="muted">{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq__wrap { display: grid; gap: 2rem; grid-template-columns: 1fr; }
+  .faq__list { display: grid; gap: .7rem; }
+  .faq__item { border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 0 1.1rem; background: var(--surface); }
+  .faq__item summary { cursor: pointer; padding: 1.05rem 0; font-family: var(--font-display); font-weight: 500; list-style: none; display: flex; justify-content: space-between; gap: 1rem; }
+  .faq__item summary::-webkit-details-marker { display: none; }
+  .faq__item summary::after { content: "+"; color: var(--lime); font-family: var(--font-mono); }
+  .faq__item[open] summary::after { content: "–"; }
+  .faq__item p { padding: 0 0 1.1rem; }
+  @media (min-width: 860px) { .faq__wrap { grid-template-columns: .8fr 1.2fr; } }
+</style>

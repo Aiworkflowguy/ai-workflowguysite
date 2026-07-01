@@ -1,0 +1,29 @@
+---
+import { site } from '../../config/site';
+interface Props { compact?: boolean; }
+const { compact = false } = Astro.props;
+---
+<section class={`auditcta ${compact ? 'section--tight' : 'section'}`}>
+  <div class="container">
+    <div class="auditcta__box card card--accent reveal">
+      <div>
+        <span class="eyebrow">Start here</span>
+        <h2 class="h2" style="margin-top:.8rem">The AI Audit — ${site.pricing.audit}</h2>
+        <p class="lead" style="margin-top:.8rem">
+          I assess your call flow, missed-call leakage, and booking process, then hand you a short
+          findings-and-recommendations doc. Low commitment, no fluff — and the fee credits toward your build.
+        </p>
+      </div>
+      <div class="auditcta__actions">
+        <a href={site.calendly} class="btn btn--primary btn--lg">Book your audit</a>
+        <a href={site.demoPhoneHref} class="btn btn--ghost">Hear the receptionist first · {site.demoPhone}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .auditcta__box { display: grid; gap: 1.6rem; }
+  .auditcta__actions { display: flex; flex-wrap: wrap; gap: .8rem; align-items: center; }
+  @media (min-width: 820px) { .auditcta__box { grid-template-columns: 1.5fr 1fr; align-items: center; } }
+</style>

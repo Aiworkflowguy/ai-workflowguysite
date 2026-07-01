@@ -1,0 +1,157 @@
+---
+import { site, nav } from '../config/site';
+---
+<header class="hdr">
+  <div class="container hdr__inner">
+    <a href="/" class="hdr__brand" aria-label={`${site.brand} home`}>
+      <span class="hdr__mark" aria-hidden="true"></span>
+      <span class="hdr__name">AI Workflow&nbsp;Guy</span>
+    </a>
+
+    <nav class="hdr__nav" aria-label="Primary">
+      {nav.map((item) => <a href={item.href}>{item.label}</a>)}
+    </nav>
+
+    <div class="hdr__cta">
+      <a href={site.demoPhoneHref} class="hdr__demo">
+        <span class="hdr__demo-dot" aria-hidden="true"></span>
+        <span class="faint mono hdr__demo-label">Hear it live</span>
+        <span class="demo-number">{site.demoPhone}</span>
+      </a>
+    </div>
+
+    <button
+      type="button"
+      class="hdr__toggle"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="hdr-menu"
+    >
+      <span class="hdr__bars" aria-hidden="true"><span></span><span></span><span></span></span>
+    </button>
+  </div>
+
+  <!-- Mobile menu — collapses the primary nav below the desktop breakpoint. -->
+  <div id="hdr-menu" class="hdr__menu" hidden>
+    <nav class="hdr__menu-nav" aria-label="Mobile">
+      {nav.map((item) => <a href={item.href}>{item.label}</a>)}
+      <a href="/contact">Book a Demo</a>
+    </nav>
+    <a href={site.calendly} class="btn btn--primary btn--lg hdr__menu-cta">Book your AI Audit · ${site.pricing.audit}</a>
+    <a href={site.demoPhoneHref} class="hdr__menu-demo">
+      <span class="faint mono hdr__menu-demo-label">Hear the receptionist live</span>
+      <span class="demo-number">{site.demoPhone}</span>
+    </a>
+  </div>
+</header>
+
+<style>
+  .hdr {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(10, 11, 13, 0.72);
+    backdrop-filter: saturate(140%) blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .hdr__inner { display: flex; align-items: center; gap: clamp(0.6rem, 3vw, 1.5rem); height: 66px; }
+  .hdr__brand { display: inline-flex; align-items: center; gap: 0.6rem; font-family: var(--font-display); font-weight: 600; letter-spacing: -0.01em; flex-shrink: 0; }
+  .hdr__mark { width: 18px; height: 18px; border-radius: 5px; background: var(--lime); box-shadow: 0 0 18px -2px var(--lime); }
+  .hdr__nav { display: none; gap: 0.85rem; margin-inline: auto; font-family: var(--font-mono); font-size: 0.8rem; }
+  .hdr__nav a { color: var(--muted); transition: color .15s ease; }
+  .hdr__nav a:hover { color: var(--lime); }
+  .hdr__cta { margin-left: auto; flex-shrink: 0; }
+  .hdr__demo { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0.8rem; border: 1px solid var(--border-lime); border-radius: 999px; white-space: nowrap; }
+  .hdr__demo .demo-number { white-space: nowrap; }
+  .hdr__demo:hover { background: var(--lime-dim); }
+  .hdr__demo-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 0 0 var(--lime); animation: pulse 2.4s infinite; }
+  .hdr__demo-label { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; display: none; white-space: nowrap; }
+  .demo-number { font-size: 0.88rem; }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(199,249,75,.5); } 70% { box-shadow: 0 0 0 7px rgba(199,249,75,0); } 100% { box-shadow: 0 0 0 0 rgba(199,249,75,0); } }
+
+  /* ---- Mobile toggle (hamburger → X) ---- */
+  .hdr__toggle {
+    display: inline-grid; place-items: center; flex-shrink: 0;
+    width: 42px; height: 42px; border: 1px solid var(--border); border-radius: var(--radius-sm);
+    background: transparent; color: var(--text); cursor: pointer; transition: border-color .15s ease;
+  }
+  .hdr__toggle:hover { border-color: var(--border-lime); }
+  .hdr__toggle:focus-visible { outline: 2px solid var(--lime); outline-offset: 2px; }
+  .hdr__bars { position: relative; width: 18px; height: 12px; }
+  .hdr__bars span { position: absolute; left: 0; right: 0; height: 2px; border-radius: 2px; background: currentColor; transition: transform .2s ease, opacity .2s ease, top .2s ease; }
+  .hdr__bars span:nth-child(1) { top: 0; }
+  .hdr__bars span:nth-child(2) { top: 5px; }
+  .hdr__bars span:nth-child(3) { top: 10px; }
+  .hdr--open .hdr__bars span:nth-child(1) { top: 5px; transform: rotate(45deg); }
+  .hdr--open .hdr__bars span:nth-child(2) { opacity: 0; }
+  .hdr--open .hdr__bars span:nth-child(3) { top: 5px; transform: rotate(-45deg); }
+
+  /* ---- Mobile menu panel ---- */
+  .hdr__menu {
+    position: absolute; top: 100%; left: 0; right: 0;
+    background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    padding: 1.1rem clamp(1.1rem, 4vw, 2rem) 1.4rem;
+    display: grid; gap: 1.1rem;
+    box-shadow: 0 26px 44px -26px rgba(0, 0, 0, 0.7);
+    max-height: calc(100dvh - 66px); overflow-y: auto;
+  }
+  .hdr__menu[hidden] { display: none; }
+  .hdr__menu-nav { display: grid; gap: 0; font-family: var(--font-mono); font-size: 0.95rem; }
+  .hdr__menu-nav a { color: var(--muted); padding: 0.8rem 0.2rem; border-bottom: 1px solid var(--border); transition: color .15s ease; }
+  .hdr__menu-nav a:hover { color: var(--lime); }
+  .hdr__menu-nav a:focus-visible { outline: 2px solid var(--lime); outline-offset: 2px; color: var(--lime); }
+  .hdr__menu-cta { width: 100%; }
+  .hdr__menu-demo { display: flex; flex-direction: column; gap: 0.15rem; align-items: center; text-align: center; }
+  .hdr__menu-demo-label { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; }
+  .hdr__menu-demo .demo-number { font-size: 1.35rem; }
+
+  @media (min-width: 992px) {
+    .hdr__nav { display: flex; }
+    .hdr__toggle { display: none; }
+    .hdr__menu { display: none !important; }
+  }
+  @media (min-width: 1200px) { .hdr__demo-label { display: inline; } }
+  @media (max-width: 420px) {
+    .hdr__demo { padding: 0.45rem 0.65rem; gap: 0.4rem; }
+    .hdr__demo .demo-number { font-size: 0.82rem; }
+    .hdr__toggle { width: 40px; height: 40px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .hdr__demo-dot { animation: none; } }
+</style>
+
+<script>
+  const hdr = document.querySelector('.hdr');
+  const toggle = document.querySelector('.hdr__toggle');
+  const menu = document.getElementById('hdr-menu');
+
+  if (hdr && toggle && menu) {
+    const setOpen = (open: boolean) => {
+      menu.hidden = !open;
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      hdr.classList.toggle('hdr--open', open);
+    };
+
+    toggle.addEventListener('click', () => setOpen(menu.hidden));
+
+    // Close after choosing a destination.
+    menu.querySelectorAll('a').forEach((a) =>
+      a.addEventListener('click', () => setOpen(false))
+    );
+
+    // Escape closes and returns focus to the toggle.
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !menu.hidden) {
+        setOpen(false);
+        (toggle as HTMLButtonElement).focus();
+      }
+    });
+
+    // Click outside the header closes it.
+    document.addEventListener('click', (e) => {
+      if (!menu.hidden && !hdr.contains(e.target as Node)) setOpen(false);
+    });
+
+    // Reaching the desktop breakpoint resets the menu state.
+    const mq = window.matchMedia('(min-width: 992px)');
+    mq.addEventListener('change', (e) => { if (e.matches) setOpen(false); });
+  }
+</script>

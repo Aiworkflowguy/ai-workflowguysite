@@ -1,0 +1,98 @@
+---
+// PER-VERTICAL PAGE — one template, every industry page built from the config.
+// Add a vertical to src/config/industries.ts and its page appears here.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AuditCta from '../../components/sections/AuditCta.astro';
+import { site } from '../../config/site';
+import { industries, type Vertical } from '../../config/industries';
+
+export function getStaticPaths() {
+  return industries.map((v) => ({ params: { slug: v.slug }, props: { v } }));
+}
+
+interface Props { v: Vertical }
+const { v } = Astro.props;
+---
+<BaseLayout
+  title={`AI receptionist for ${v.name} | AI Workflow Guy`}
+  description={`${v.headline} A 24/7 AI receptionist that answers, books, and texts back missed calls — built for ${v.name.toLowerCase()}. Hear it live: ${site.demoPhone}.`}
+>
+  <!-- Vertical hero -->
+  <section class="section vhero">
+    <div class="container vhero__grid">
+      <div class="reveal">
+        <span class="eyebrow">{v.eyebrow}</span>
+        <h1 class="h1" style="margin-top:1.1rem">{v.headline}</h1>
+        <p class="lead" style="margin-top:1.35rem">{v.intro}</p>
+        <div class="vhero__actions">
+          <a href={site.calendly} class="btn btn--primary btn--lg">Book your AI Audit · ${site.pricing.audit}</a>
+          <a href={site.demoPhoneHref} class="btn btn--ghost btn--lg">
+            <span class="vhero__dot" aria-hidden="true"></span> Hear it live: {site.demoPhone}
+          </a>
+        </div>
+      </div>
+
+      <aside class="card card--accent reveal vhero__demo" aria-label="Live demo">
+        <span class="badge">Live · Try it now</span>
+        <p class="h3" style="margin-top:1rem">Call it and pretend you’re a customer.</p>
+        <p class="muted" style="margin-top:.6rem">Same receptionist we’d build for your business — answering and booking in real time.</p>
+        <a href={site.demoPhoneHref} class="vhero__num demo-number">{site.demoPhone}</a>
+        <p class="faint mono" style="font-size:.72rem;letter-spacing:.1em">30 seconds · no signup</p>
+      </aside>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- Where the calls leak -->
+  <section class="section">
+    <div class="container">
+      <div class="reveal" style="max-width:60ch">
+        <span class="eyebrow">Where the calls leak</span>
+        <h2 class="h2" style="margin-top:.8rem">Sound familiar?</h2>
+      </div>
+      <div class="grid grid--3" style="margin-top:2rem">
+        {v.pains.map((p) => (
+          <article class="card reveal">
+            <span class="mono" style="color:var(--lime)" aria-hidden="true">✕</span>
+            <p class="muted" style="margin-top:.6rem">{p}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- What the receptionist does for this vertical -->
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="reveal" style="max-width:60ch">
+        <span class="eyebrow">What it does for you</span>
+        <h2 class="h2" style="margin-top:.8rem">Every call answered. Every booking captured.</h2>
+      </div>
+      <div class="grid grid--3" style="margin-top:2rem">
+        {v.handles.map((h, i) => (
+          <article class="card card--interactive reveal">
+            <span class="mono" style="color:var(--lime);font-size:.95rem;letter-spacing:.1em">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="h3" style="margin-top:.6rem">{h.title}</h3>
+            <p class="muted" style="margin-top:.5rem">{h.body}</p>
+          </article>
+        ))}
+      </div>
+      <div class="card card--accent reveal" style="margin-top:var(--gap);text-align:center">
+        <p class="h3">{v.outcome}</p>
+      </div>
+    </div>
+  </section>
+
+  <AuditCta />
+</BaseLayout>
+
+<style>
+  .vhero { padding-top: clamp(2.5rem, 6vw, 4rem); }
+  .vhero__grid { display: grid; gap: clamp(2rem, 5vw, 3.5rem); grid-template-columns: 1fr; align-items: center; }
+  .vhero__actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 2rem; }
+  .vhero__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--lime); }
+  .vhero__demo { display: flex; flex-direction: column; align-items: flex-start; gap: .3rem; }
+  .vhero__num { font-size: clamp(1.6rem, 4vw, 2.15rem); margin: 1rem 0 .4rem; }
+  @media (min-width: 940px) { .vhero__grid { grid-template-columns: 1.25fr .9fr; } }
+</style>

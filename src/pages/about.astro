@@ -1,0 +1,85 @@
+---
+// ABOUT — the founder-operator story. Peter runs a real automated business
+// (Peak Mode Supplements) on the same stack he builds for clients. NoVA-based.
+// Founder proof is legitimate; no client claims here.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AuditCta from '../components/sections/AuditCta.astro';
+import { site } from '../config/site';
+---
+<BaseLayout
+  title="About — the operator who builds what he runs | AI Workflow Guy"
+  description="AI Workflow Guy is a Northern Virginia AI consultant who runs a fully automated e-commerce business, Peak Mode Supplements, on the same systems he builds for local businesses."
+>
+  <section class="section">
+    <div class="container about__grid">
+      <div class="reveal">
+        <span class="eyebrow">About</span>
+        <h1 class="h1" style="margin-top:1rem">I build the systems I already run myself.</h1>
+        <p class="lead" style="margin-top:1.2rem">
+          I’m the operator behind AI Workflow Guy — a {site.region}-based AI consultant for local businesses.
+          Most "AI experts" have never had to make automation actually work in a business they own. I have.
+        </p>
+      </div>
+
+      <aside class="card card--accent reveal about__card">
+        <span class="tier-label">Based in</span>
+        <p class="h3" style="margin-top:.4rem">{site.region}</p>
+        <p class="muted" style="margin-top:.8rem">Serving local businesses on-site here, and remotely anywhere.</p>
+        <a href={site.demoPhoneHref} class="about__demo">
+          <span class="faint mono" style="font-size:.7rem;letter-spacing:.12em;text-transform:uppercase">Hear my work live</span>
+          <span class="demo-number" style="font-size:1.4rem">{site.demoPhone}</span>
+        </a>
+      </aside>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <section class="section">
+    <div class="container" style="max-width:66ch">
+      <div class="stack reveal">
+        <span class="eyebrow">The short version</span>
+        <h2 class="h2" style="margin-top:.5rem">A real business, run on AI workflows.</h2>
+        <p class="muted">
+          I built and automated an e-commerce brand — Peak Mode Supplements — using the exact stack I now
+          build for clients. Order fulfillment, customer support, marketing, and reporting run as AI-driven
+          workflows I designed, deployed, and maintain myself.
+        </p>
+        <p class="muted">
+          That’s the difference. When I recommend an automation, it’s not theory from a course — it’s something
+          I’ve already had to make reliable in a business where a broken workflow costs me real money. I know
+          where automation pays back fast, and I know where it’s hype that isn’t worth your time.
+        </p>
+        <p class="muted">
+          So I don’t lead with "AI." I lead with the boring, high-payback wins first — usually the calls and
+          bookings a local business is quietly losing every week — and I prove the system works before we
+          expand it. Advice that ends in a working system, not a slide deck.
+        </p>
+      </div>
+
+      <div class="grid grid--3 reveal" style="margin-top:2.4rem">
+        <article class="card">
+          <h3 class="h3" style="font-size:1.1rem">Operator, not lecturer</h3>
+          <p class="muted" style="margin-top:.5rem">I run automated systems daily — I’m not reselling someone else’s playbook.</p>
+        </article>
+        <article class="card">
+          <h3 class="h3" style="font-size:1.1rem">Payback-first</h3>
+          <p class="muted" style="margin-top:.5rem">Every engagement starts with an audit so you spend on the fix with the fastest return.</p>
+        </article>
+        <article class="card">
+          <h3 class="h3" style="font-size:1.1rem">Local & hands-on</h3>
+          <p class="muted" style="margin-top:.5rem">{site.region}-based, with in-person setup for local businesses.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <AuditCta />
+</BaseLayout>
+
+<style>
+  .about__grid { display: grid; gap: 2.4rem; grid-template-columns: 1fr; align-items: center; }
+  .about__card { display: flex; flex-direction: column; align-items: flex-start; }
+  .about__demo { display: inline-flex; flex-direction: column; gap: .15rem; margin-top: 1.2rem; }
+  @media (min-width: 900px) { .about__grid { grid-template-columns: 1.4fr .9fr; } }
+</style>

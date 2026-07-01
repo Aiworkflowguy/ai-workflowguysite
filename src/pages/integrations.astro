@@ -1,0 +1,63 @@
+---
+// INTEGRATIONS — honest by design. Lists only what the system genuinely
+// connects to (from src/config/integrations.ts); anything else is confirmed on
+// the audit call rather than implied with a logo wall.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AuditCta from '../components/sections/AuditCta.astro';
+import { site } from '../config/site';
+import { integrationGroups } from '../config/integrations';
+---
+<BaseLayout
+  title="Integrations — works with the tools you already use | AI Workflow Guy"
+  description="The AI Front Office books into your existing calendar, answers your existing phone number, and hands off to your CRM. We confirm your exact stack on the audit call."
+>
+  <section class="section">
+    <div class="container">
+      <div class="reveal" style="max-width:64ch">
+        <span class="eyebrow">Integrations</span>
+        <h1 class="h1" style="margin-top:1rem">It plugs into the tools you already run.</h1>
+        <p class="lead" style="margin-top:1.2rem">
+          You don’t switch software or learn a new dashboard. The receptionist answers your existing number
+          and books into your existing calendar. Here’s what it connects to — and we confirm your exact
+          setup on the audit call before you commit to anything.
+        </p>
+      </div>
+
+      <div class="grid grid--3" style="margin-top:2.4rem">
+        {integrationGroups.map((g) => (
+          <article class="card card--interactive reveal">
+            <h2 class="h3">{g.category}</h2>
+            <p class="muted" style="margin-top:.6rem">{g.blurb}</p>
+            <ul class="intg__list">
+              {g.tools.map((t) => (
+                <li class="mono">{t}</li>
+              ))}
+            </ul>
+            {g.note && <p class="faint" style="margin-top:.9rem;font-size:.82rem">{g.note}</p>}
+          </article>
+        ))}
+      </div>
+
+      <div class="card card--accent reveal intg__honest">
+        <div>
+          <span class="tier-label">The honest version</span>
+          <p class="h3" style="margin-top:.5rem">Don’t see your tool? That’s what the audit is for.</p>
+          <p class="muted" style="margin-top:.6rem;max-width:56ch">
+            Rather than claim we connect to everything, we scope your actual stack during the audit and
+            tell you plainly what’s a clean fit and what isn’t — before you spend a dollar on the build.
+          </p>
+        </div>
+        <a href={site.calendly} class="btn btn--primary">Book the audit · ${site.pricing.audit}</a>
+      </div>
+    </div>
+  </section>
+  <AuditCta />
+</BaseLayout>
+
+<style>
+  .intg__list { list-style: none; padding: 0; margin: 1.1rem 0 0; display: grid; gap: .5rem; }
+  .intg__list li { position: relative; padding-left: 1.4rem; font-size: .9rem; color: var(--text); }
+  .intg__list li::before { content: "✓"; position: absolute; left: 0; color: var(--lime); }
+  .intg__honest { display: grid; gap: 1.4rem; align-items: center; margin-top: var(--gap); }
+  @media (min-width: 820px) { .intg__honest { grid-template-columns: 1.5fr auto; } }
+</style>
